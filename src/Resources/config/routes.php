@@ -52,7 +52,7 @@ $addressCheckProxyRoute = new Route(
         '_controller' => EnderecoApiProxyController::class,
         'XmlHttpRequest' => true,
         'csrf_protected' => false,
-        '_routeScope' => ['storefront'],
+        '_routeScope' => ['ENDERECO_CUSTOM_ROUTE_SCOPE'],
     ]
 );
 $addressCheckProxyRoute->setOptions(['seo' => false]);

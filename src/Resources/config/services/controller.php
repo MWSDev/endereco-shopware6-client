@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Endereco\Shopware6Client\Controller\Api\ApiTestController;
 use Endereco\Shopware6Client\Controller\Storefront\EnderecoApiProxyController;
 use Endereco\Shopware6Client\Controller\Storefront\AddressController;
+use Endereco\Shopware6Client\CustomRouteScope;
 use Endereco\Shopware6Client\Service\AddressCheck\AddressCheckPayloadBuilderInterface;
 use Endereco\Shopware6Client\Service\ApiConfiguration\ApiConfigurationFetcherInterface;
 use Endereco\Shopware6Client\Service\EnderecoService;
@@ -18,6 +19,11 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
  * Registers and configures API and Storefront controllers
  */
 return static function (ContainerConfigurator $containerConfigurator): void {
+
+    $containerConfigurator->services()->set(CustomRouteScope::class)
+        ->tag('shopware.route_scope')
+        ->public();
+
     $services = $containerConfigurator->services()
         ->defaults()
         ->autowire()
@@ -42,7 +48,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('service_container')
         ])
         ->public();
-    
+
     $services->set(EnderecoApiProxyController::class)
         ->args([
             '$httpClient' => service('endereco.http_client'),

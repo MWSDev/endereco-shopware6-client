@@ -26,7 +26,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  * as it serves as an API proxy. The Endereco API itself provides the
  * authentication layer via X-Auth-Key headers.
  *
- * @Route(defaults={"_routeScope"={"storefront"}}) // For SW Version >= 6.4.11.0
+ * @Route(defaults={"_routeScope"={"ENDERECO_CUSTOM_ROUTE_SCOPE"}}) // For SW Version >= 6.4.11.0
  */
 class EnderecoApiProxyController
 {
